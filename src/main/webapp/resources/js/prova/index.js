@@ -1,5 +1,5 @@
 $(document).ready(function() {
-//	alert("js works");
+	
 });
 
 //var getProdutos = function(){

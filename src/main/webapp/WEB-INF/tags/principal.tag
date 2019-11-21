@@ -40,22 +40,13 @@
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
 	
-<!-- 	  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado"> -->
-<!-- 	    <ul class="navbar-nav mr-auto"> -->
-<!--     	  <li class="nav-item"> -->
-<!-- 	        <a class="nav-link" href="./listagemProduto.jsp">Listagem produtos<span class="sr-only"></span></a> -->
-<!-- 	      </li> -->
-<!-- 	      <li class="nav-item"> -->
-<!-- 	        <a class="nav-link" href="./cadastroProduto.jsp">Cadastro produto<span class="sr-only"></span></a> -->
-<!-- 	      </li> -->
-<!-- 	      <li class="nav-item"> -->
-<!-- 	        <a class="nav-link" href="./listagemCategoria.jsp">Categorias<span class="sr-only"></span></a> -->
-<!-- 	      </li> -->
-<!-- 	      <li class="nav-item"> -->
-<!-- 	        <a class="nav-link" href="./cadastroCategoria.jsp">Cadastro categoria<span class="sr-only"></span></a> -->
-<!-- 	      </li> -->
-<!-- 	    </ul> -->
-<!-- 	  </div> -->
+	  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+	    <ul class="navbar-nav mr-auto">
+    	  <li class="nav-item">
+	        <a class="nav-link" href="${pageContext.request.contextPath}/prova/cadastroProva">Cadastro Prova<span class="sr-only"></span></a>
+	      </li>
+	    </ul>
+	  </div>
 	</nav>
 	<div id="body">
 		<jsp:doBody />

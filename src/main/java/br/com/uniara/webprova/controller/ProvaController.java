@@ -11,4 +11,9 @@ public class ProvaController {
 	public String index() {
 		return "prova/index";
 	}
+	
+	@RequestMapping(value = "cadastroProva")
+	public String cadastroProva() {
+		return "prova/cadastroProva";
+	}
 }
