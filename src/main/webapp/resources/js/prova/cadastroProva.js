@@ -86,17 +86,3 @@ var salvarProva = function(prova){
         }
 	});
 }
-
-//var getProdutos = function(){
-//	$.ajax({
-//		  url: "/produto_web/produto", 
-//		  success: function(result){
-//			  var resultado = $.parseJSON(result);
-//			  if(resultado.sucesso){
-//				  adicionaDadosTabela(resultado.dados);
-//			  }else{
-//				  alert(resultado.mensagem);
-//			  }
-//		  }
-//	});
-//};

@@ -1,15 +1,17 @@
-//var TEMPLATE_QUESTAO = 
-//	'<hr><div id="questao[Q_NUMBER]"><div class="form-group col col-12"><label>Pergunta</label><div class="form-group">' +
-//	'<input type="text" class="form-control question-form" name="pergunta"></div><div class="form-group col col-12">' +
-//	'<div class="input-group"><div class="input-group-prepend"><div class="input-group-text"><input type="radio" name="questao[Q_NUMBER]" class="question-form"></div></div>' +
-//	'<input type="text" class="form-control question-form" name="questao[Q_NUMBER]"><button type="button" id="btnNovaAlternativa" class="btn btn-primary btnNovaAlternativa"> + </button></div></div></div></div>';
-//
-//var TEMPLATE_ALTERNATIVA = '<div class="input-group"> <div class="input-group-prepend"><div class="input-group-text">' +
-//  '<input type="radio" name="[ALTERNATIVA_NAME]" class="question-form"></div></div><input type="text" class="form-control question-form" name="[ALTERNATIVA_NAME]"></div>';
+var TEMPLATE_QUESTAO = 
+	'<hr><div><div class="form-group col col-12"><h5>Questão [PERGUNTA_N]</h5><label><b>[Q_PERGUNTA]</b></label></div>';
+
+var TEMPLATE_ALTERNATIVA = 
+	'<div class="col"><input type="radio" name="[ALTERNATIVA_NAME]" class="question-form" id="[ID_RADIO]" value="[ID_ALTERNATIVA]"><label for="[ID_RADIO]">[ALTERNATIVA_TXT]</label></div>';
 
 $(document).ready(function() {
 	recuperarProva(idProva);
 	
+	$("#btnEntregarProva").off('click');
+	$("#btnEntregarProva").on('click', function(){
+		let respostas = recuperarRespostasPreenchidas();
+		entregarProva(idProva, respostas);
+	});
 });
 
 var recuperarProva = function(id){
@@ -29,4 +31,45 @@ var recuperarProva = function(id){
 
 var montaViewProva = function(prova){
 	$("#tituloProva").html(prova.titulo);
+	
+	prova.questoes.forEach(function(e, i){
+		let template = TEMPLATE_QUESTAO.replace('[PERGUNTA_N]', (i + 1)).replace('[Q_PERGUNTA]', e.pergunta);
+		var idQuestao = e.id;
+		var templateAlternativas = '';
+		e.alternativas.forEach(function(el, index){
+			templateAlternativas += TEMPLATE_ALTERNATIVA
+					.replace('[ALTERNATIVA_NAME]', idQuestao)
+					.replace('[ALTERNATIVA_TXT]', el.texto)
+					.replace('[ID_RADIO]', '' + idQuestao + el.nroAlternativa)
+					.replace('[ID_RADIO]', '' + idQuestao + el.nroAlternativa)
+					.replace('[ID_ALTERNATIVA]', el.idAlternativa);
+		});
+		
+		template += templateAlternativas + '</div>';		
+		$("#containerProva").append(template);
+	});
+}
+
+var recuperarRespostasPreenchidas = function(){
+	let $respostas = $("input:checked");
+	let idsRespostas = [];
+	$respostas.each(function(i, e){
+		idsRespostas.push(e.value);
+	});
+	return idsRespostas;
+}
+
+var entregarProva = function(provaId, questoes){
+	$.ajax({
+        url: "/prova/entregarProva",
+        type: 'GET',
+        data: {"idProva": provaId, "respostas": questoes},
+        success: function(resultado){
+        	if(resultado.sucesso){
+        		alert("sucesso");
+        	}else{
+        		alert(resultado.mensagem);
+        	}
+        }
+	});
 }

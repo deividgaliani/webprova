@@ -88,6 +88,13 @@ public class ProvaController {
 		return resultadoOperacao;
 	}
 	
+	@RequestMapping(value = "entregarProva", method = RequestMethod.GET)
+	public @ResponseBody ResultadoOperacao<ProvaVO> entregarProva(@RequestParam Integer idProva, @RequestParam List<Integer> respostas) {
+		ResultadoOperacao<ProvaVO> resultadoOperacao = new ResultadoOperacao<ProvaVO>();
+		
+		return resultadoOperacao;
+	}
+	
 	public IProvaService getProvaService() {
 		return ProvaService;
 	}

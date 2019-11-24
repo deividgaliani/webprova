@@ -7,13 +7,15 @@ public class AlternativaVO {
 	private String texto;
 	
 	private Boolean alternativaCorreta;
+	
+	private Integer idAlternativa;
 
 	public AlternativaVO() {}
 
-	public AlternativaVO(Integer nroAlternativa, String texto, Boolean alternativaCorreta) {
+	public AlternativaVO(Integer nroAlternativa, String texto, Integer idAlternativa) {
 		this.nroAlternativa = nroAlternativa;
 		this.texto = texto;
-		this.alternativaCorreta = alternativaCorreta;
+		this.idAlternativa = idAlternativa;
 	}
 
 	public Integer getNroAlternativa() {
@@ -38,6 +40,14 @@ public class AlternativaVO {
 
 	public void setAlternativaCorreta(Boolean alternativaCorreta) {
 		this.alternativaCorreta = alternativaCorreta;
+	}
+
+	public Integer getIdAlternativa() {
+		return idAlternativa;
+	}
+
+	public void setIdAlternativa(Integer idAlternativa) {
+		this.idAlternativa = idAlternativa;
 	}
 	
 }
