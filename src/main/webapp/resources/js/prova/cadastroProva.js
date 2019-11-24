@@ -32,6 +32,7 @@ var loadEventsClick = function(){
 	$("#btnCadastrarProva").off('click');
 	$("#btnCadastrarProva").on('click', function(){
 		let prova = getJsonValues();
+		salvarProva(prova);
 	});
 }
 
@@ -68,6 +69,22 @@ var getJsonValues = function(){
 		prova.questoes.push(questao);
 	}
 	return prova;
+}
+
+var salvarProva = function(prova){
+	$.ajax({
+        url: "/prova/salvar",
+        contentType: "application/json; charset=utf-8",
+        type: 'POST',
+        data: JSON.stringify(prova),
+        success: function(resultado){
+        	if(resultado.sucesso){
+        		alert("Prova inserida com sucesso");
+        	}else{
+        		alert(resultado.mensagem);
+        	}
+        }
+	});
 }
 
 //var getProdutos = function(){

@@ -3,8 +3,10 @@ package br.com.uniara.webprova.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +23,7 @@ public class Prova {
 	@Column(name = "TITULO")
 	private String titulo;
 	
-	@OneToMany(mappedBy = "prova")
+	@OneToMany(mappedBy = "prova", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Questao> questoes;
 
 	public Integer getId() {

@@ -61,7 +61,7 @@ public class Alternativa {
 		this.questao = questao;
 	}
 
-	public Boolean isAlternativaCorreta() {
+	public Boolean getAlternativaCorreta() {
 		return alternativaCorreta;
 	}
 

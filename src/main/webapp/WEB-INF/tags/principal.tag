@@ -10,10 +10,12 @@
 
     <!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.dataTables.min.css">
 	
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.4.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.dataTables.min.js"></script>
 
     <style>
       .bd-placeholder-img {
@@ -42,6 +44,9 @@
 	
 	  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
 	    <ul class="navbar-nav mr-auto">
+    	  <li class="nav-item">
+	        <a class="nav-link" href="${pageContext.request.contextPath}/prova/provas">Provas<span class="sr-only"></span></a>
+	      </li>
     	  <li class="nav-item">
 	        <a class="nav-link" href="${pageContext.request.contextPath}/prova/cadastroProva">Cadastro Prova<span class="sr-only"></span></a>
 	      </li>
