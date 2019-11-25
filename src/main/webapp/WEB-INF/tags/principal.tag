@@ -37,7 +37,7 @@
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	  <a class="navbar-brand" href="${pageContext.request.contextPath}/prova/index">Inicio</a>
+	  <a class="navbar-brand" href="${pageContext.request.contextPath}/">PD</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -56,12 +56,7 @@
 	<div id="body">
 		<jsp:doBody />
 	</div>
-	<div id="pagefooter">
-		<!-- FOOTER -->
-<!-- 		<footer class="container"> -->
-<!-- 			<p>&copy; WEB Provas. &middot;</p> -->
-<!-- 		</footer> -->
-	</div>
+
 	
 </body>
 </html>

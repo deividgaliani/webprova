@@ -25,10 +25,10 @@ public class ProvaController {
 	@Autowired
 	private IProvaService ProvaService;
 		
-	@RequestMapping(value = "index")
-	public String index() {
-		return "prova/index";
-	}
+//	@RequestMapping(value={"", "/", "index"})
+//	public String index() {
+//		return "prova/index";
+//	}
 	
 	@RequestMapping(value = "provas")
 	public String provas() {
