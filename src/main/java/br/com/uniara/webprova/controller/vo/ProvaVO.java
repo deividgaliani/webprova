@@ -11,7 +11,11 @@ public class ProvaVO {
 	
 	private Long qtdQuestoes;
 	
-	List<QuestaoVO> questoes;
+	private List<QuestaoVO> questoes;
+	
+	private List<Integer> respostas;
+	
+	private Integer idProva;
 	
 	public ProvaVO() {}
 	
@@ -54,6 +58,25 @@ public class ProvaVO {
 
 	public void setQuestoes(List<QuestaoVO> questoes) {
 		this.questoes = questoes;
+	}
+
+	public List<Integer> getRespostas() {
+		if (respostas == null) {
+			respostas = new ArrayList<Integer>();
+		}
+		return respostas;
+	}
+
+	public void setRespostas(List<Integer> respostas) {
+		this.respostas = respostas;
+	}
+
+	public Integer getIdProva() {
+		return idProva;
+	}
+
+	public void setIdProva(Integer idProva) {
+		this.idProva = idProva;
 	}
 	
 }

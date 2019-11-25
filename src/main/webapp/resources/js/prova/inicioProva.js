@@ -60,10 +60,14 @@ var recuperarRespostasPreenchidas = function(){
 }
 
 var entregarProva = function(provaId, questoes){
+	let prova = {};
+	prova.idProva = provaId;
+	prova.respostas = questoes;
 	$.ajax({
         url: "/prova/entregarProva",
-        type: 'GET',
-        data: {"idProva": provaId, "respostas": questoes},
+        contentType: "application/json; charset=utf-8",
+        type: 'POST',
+        data: JSON.stringify(prova),
         success: function(resultado){
         	if(resultado.sucesso){
         		alert("sucesso");

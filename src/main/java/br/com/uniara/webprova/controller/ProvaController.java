@@ -1,6 +1,7 @@
 package br.com.uniara.webprova.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,8 +89,8 @@ public class ProvaController {
 		return resultadoOperacao;
 	}
 	
-	@RequestMapping(value = "entregarProva", method = RequestMethod.GET)
-	public @ResponseBody ResultadoOperacao<ProvaVO> entregarProva(@RequestParam Integer idProva, @RequestParam List<Integer> respostas) {
+	@RequestMapping(value = "entregarProva", method = RequestMethod.POST)
+	public @ResponseBody ResultadoOperacao<ProvaVO> entregarProva(@RequestBody ProvaVO prova) {
 		ResultadoOperacao<ProvaVO> resultadoOperacao = new ResultadoOperacao<ProvaVO>();
 		
 		return resultadoOperacao;
