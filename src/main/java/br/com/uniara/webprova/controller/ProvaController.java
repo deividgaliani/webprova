@@ -1,6 +1,7 @@
 package br.com.uniara.webprova.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.uniara.webprova.controller.vo.AlternativaVO;
 import br.com.uniara.webprova.controller.vo.ProvaVO;
+import br.com.uniara.webprova.controller.vo.ResultadoProvaVO;
 import br.com.uniara.webprova.model.Alternativa;
 import br.com.uniara.webprova.model.Prova;
 import br.com.uniara.webprova.model.Questao;
+import br.com.uniara.webprova.service.IAlternativaService;
 import br.com.uniara.webprova.service.IProvaService;
 
 @Controller
@@ -23,6 +27,9 @@ public class ProvaController {
 	
 	@Autowired
 	private IProvaService ProvaService;
+	
+	@Autowired
+	private IAlternativaService alternativaService;
 		
 //	@RequestMapping(value={"", "/", "index"})
 //	public String index() {
@@ -88,15 +95,49 @@ public class ProvaController {
 		return resultadoOperacao;
 	}
 	
-	@RequestMapping(value = "entregarProva", method = RequestMethod.GET)
-	public @ResponseBody ResultadoOperacao<ProvaVO> entregarProva(@RequestParam Integer idProva, @RequestParam List<Integer> respostas) {
-		ResultadoOperacao<ProvaVO> resultadoOperacao = new ResultadoOperacao<ProvaVO>();
+	@RequestMapping(value = "entregarProva", method = RequestMethod.POST)
+	public @ResponseBody ResultadoOperacao<ResultadoProvaVO> entregarProva(@RequestBody ProvaVO prova) {
+		ResultadoOperacao<ResultadoProvaVO> resultadoOperacao = new ResultadoOperacao<ResultadoProvaVO>();
+		
+		try {
+			ProvaVO provaVo = getProvaService().recuperarProva(prova.getIdProva());
+			List<AlternativaVO> respostas = getAlternativaService().recuperarAlternativasPorId(prova.getRespostas());
+			ResultadoProvaVO resultado = calculaResultadoProva(provaVo.getQtdQuestoes(), respostas);
+			resultadoOperacao.setDado(resultado);
+			resultadoOperacao.setSucesso(Boolean.TRUE);
+		}catch (Exception e) {
+			resultadoOperacao.setSucesso(Boolean.FALSE);
+		}
 		
 		return resultadoOperacao;
 	}
 	
+	private ResultadoProvaVO calculaResultadoProva(Long qtdQuestoes, List<AlternativaVO> alternativas) {
+		ResultadoProvaVO resultado = new ResultadoProvaVO();
+		Integer qtdAcerto = 0;
+		for (AlternativaVO a : alternativas) {
+			if(a.getAlternativaCorreta()) {
+				qtdAcerto++;
+			}
+		}
+		
+		Integer quantidadeQuestoes = Math.toIntExact(qtdQuestoes);
+		Double nota = 10.0 / quantidadeQuestoes * qtdAcerto;
+		
+		resultado.setQtdAcertos(qtdAcerto);
+		resultado.setQtdAlternativas(quantidadeQuestoes);
+		resultado.setQtdErros(quantidadeQuestoes - qtdAcerto);
+		resultado.setNota(nota);
+		
+		return resultado;
+	}
+	
 	public IProvaService getProvaService() {
 		return ProvaService;
+	}
+
+	public IAlternativaService getAlternativaService() {
+		return alternativaService;
 	}
 	
 }

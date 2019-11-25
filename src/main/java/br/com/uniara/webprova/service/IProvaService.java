@@ -12,4 +12,5 @@ public interface IProvaService {
 	List<ProvaVO> recuperarProvasAluno();
 	
 	ProvaVO recuperarProva(Integer id);
+	
 }

@@ -12,6 +12,10 @@ $(document).ready(function() {
 		let respostas = recuperarRespostasPreenchidas();
 		entregarProva(idProva, respostas);
 	});
+	
+	$('#modalResultadoProva').on('hidden.bs.modal', function (e) {
+		window.location.href = '/prova/provas';
+	})
 });
 
 var recuperarProva = function(id){
@@ -60,13 +64,22 @@ var recuperarRespostasPreenchidas = function(){
 }
 
 var entregarProva = function(provaId, questoes){
+	let prova = {};
+	prova.idProva = provaId;
+	prova.respostas = questoes;
 	$.ajax({
         url: "/prova/entregarProva",
-        type: 'GET',
-        data: {"idProva": provaId, "respostas": questoes},
+        contentType: "application/json; charset=utf-8",
+        type: 'POST',
+        data: JSON.stringify(prova),
         success: function(resultado){
         	if(resultado.sucesso){
-        		alert("sucesso");
+        		let htmlResultado = '<p><b>NOTA: </b>' + resultado.dado.nota + '</p>' +
+        							'<p><b>Quantidade acertos: </b>' + resultado.dado.qtdAcertos + '</p>' +
+        							'<p><b>Quantidade erros: </b>' + resultado.dado.qtdErros + '</p>' +
+        							'<p><b>Total questões: </b>' + resultado.dado.qtdAlternativas + '</p>';
+        		$("#modalContainer").html(htmlResultado);
+        		$("#modalResultadoProva").modal('show');
         	}else{
         		alert(resultado.mensagem);
         	}
