@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests()
-                .antMatchers("/").permitAll()
+//                .antMatchers("/").permitAll()
 //                .antMatchers("prova/cadastroProva").hasAnyRole("ADMIN")
                 .antMatchers("prova/**").hasAnyRole("ADMIN", "USER")
                 .anyRequest()

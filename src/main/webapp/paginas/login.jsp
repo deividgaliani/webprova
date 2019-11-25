@@ -134,6 +134,13 @@
                         Entrar
                     </button>
                 </form>
+                <hr>
+                <h5 class="text-center" style="color: white;">
+                    professor : 123456
+                    <br>
+                    aluno : 123456
+                </h5>
+
             </div>
 
         </div>

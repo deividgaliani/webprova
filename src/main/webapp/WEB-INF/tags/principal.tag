@@ -50,6 +50,9 @@
     	  <li class="nav-item">
 	        <a class="nav-link" href="${pageContext.request.contextPath}/prova/cadastroProva">Cadastro Prova<span class="sr-only"></span></a>
 	      </li>
+			<li class="nav-item">
+			<a class="nav-link" href="${pageContext.request.contextPath}/logout">Sair<span class="sr-only"></span></a>
+			</li>
 	    </ul>
 	  </div>
 	</nav>
