@@ -3,7 +3,15 @@
 
 <t:principal>
 	<jsp:body>
-		<h2 class="col">Provas</h2>
+		<div class="p-3">
+			<div class="page-header">
+				<h1>Bem vindo(a)!</h1>
+			</div>
+			<p>
+				Prova Digital
+			</p>
+
+		</div>
 		<script src="${pageContext.request.contextPath}/resources/js/prova/index.js"></script>
     </jsp:body>
 </t:principal>
