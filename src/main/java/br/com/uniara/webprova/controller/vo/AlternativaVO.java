@@ -18,6 +18,13 @@ public class AlternativaVO {
 		this.idAlternativa = idAlternativa;
 	}
 
+	public AlternativaVO(Integer nroAlternativa, String texto, Integer idAlternativa, Boolean alternativaCorreta) {
+		this.nroAlternativa = nroAlternativa;
+		this.texto = texto;
+		this.alternativaCorreta = alternativaCorreta;
+		this.idAlternativa = idAlternativa;
+	}
+	
 	public Integer getNroAlternativa() {
 		return nroAlternativa;
 	}

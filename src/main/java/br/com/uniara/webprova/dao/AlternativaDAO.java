@@ -16,4 +16,9 @@ public interface AlternativaDAO extends JpaRepository<Alternativa, Integer>{
 			" FROM Alternativa a " +
 			" WHERE a.questao.id = :idQuestao ")
 	List<AlternativaVO> recuperarPorIdQuestao(Integer idQuestao);
+	
+	@Query(" SELECT new br.com.uniara.webprova.controller.vo.AlternativaVO(a.nroAlternativa, a.texto, a.id, a.alternativaCorreta) " + 
+			" FROM Alternativa a " +
+			" WHERE a.id IN (:idsAlternativas) ")
+	List<AlternativaVO> recuperarAlternativasPorId(List<Integer> idsAlternativas);
 }

@@ -12,6 +12,10 @@ $(document).ready(function() {
 		let respostas = recuperarRespostasPreenchidas();
 		entregarProva(idProva, respostas);
 	});
+	
+	$('#modalResultadoProva').on('hidden.bs.modal', function (e) {
+		window.location.href = '/prova/provas';
+	})
 });
 
 var recuperarProva = function(id){
@@ -70,7 +74,12 @@ var entregarProva = function(provaId, questoes){
         data: JSON.stringify(prova),
         success: function(resultado){
         	if(resultado.sucesso){
-        		alert("sucesso");
+        		let htmlResultado = '<p><b>NOTA: </b>' + resultado.dado.nota + '</p>' +
+        							'<p><b>Quantidade acertos: </b>' + resultado.dado.qtdAcertos + '</p>' +
+        							'<p><b>Quantidade erros: </b>' + resultado.dado.qtdErros + '</p>' +
+        							'<p><b>Total questões: </b>' + resultado.dado.qtdAlternativas + '</p>';
+        		$("#modalContainer").html(htmlResultado);
+        		$("#modalResultadoProva").modal('show');
         	}else{
         		alert(resultado.mensagem);
         	}
